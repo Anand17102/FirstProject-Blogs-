@@ -1,0 +1,63 @@
+
+.container{
+    margin:5px 5px 5px 5px;
+}
+
+#nav{
+    position:sticky;
+    top: 0px;
+    z-index: 1;
+}
+
+#p1{
+    top: 0px;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+p{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+}
+
+.tab{
+    width: 100%;
+    background-color: aliceblue;
+    height:30px;
+    bottom: 0px;
+    position: fixed;
+}
+
+#home{
+
+    top:0px;
+    color: black;
+    font-size:20px;
+   
+
+}
+#add{
+
+    top:0px;
+    color: black;
+    font-size:20px;
+  
+
+}
+#search{
+
+    top:0px;
+    font-size:20px;
+    color: black;
+  
+
+}
+
+#s{
+    margin-left :600px;
+}
+
+.tab{
+    display: flex;
+    justify-content: space-around;
+}

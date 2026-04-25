@@ -1,0 +1,27 @@
+{% extends 'temp/main.html' %}
+{% block content %}
+<div class="container">
+<form class="mx-auto p-3 card col-6 shadow-lg m-5" method="post" enctype="multipart/form-data">
+  {%csrf_token%}
+  <h2>Create Your Blog</h2>
+  <br>
+  <div class="p-0 mb-3 form-check">
+    <label for="formFile" class="form-label">Add Picture</label>
+    <input class="form-control" name="image" type="file" id="formFile">
+  
+  </div>
+  <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">Title</label>
+    <input type="text" class="form-control" name="post_title" id="exampleInputEmail1" aria-describedby="emailHelp">
+  </div>
+  <div class="mb-3">
+    <label for="exampleInputPassword1" class="form-label">Content</label>
+    <textarea class="form-control" name="description" id=""></textarea>
+  </div>
+
+  <button type="post" class="btn btn-primary" >POST</button>
+</form>
+<a id="s" href="/blogs">GoToBlogs-></a>
+</div>
+
+{% endblock %}
