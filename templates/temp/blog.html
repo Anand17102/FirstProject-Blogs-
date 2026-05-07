@@ -52,7 +52,7 @@
               >
             </form>
           </div>
-          <small class="text-body-secondary">9 mins</small>
+          <small class="text-body-secondary"></small>
         </div>
       </div>
     </div>
@@ -60,6 +60,39 @@
   <hr />
   {%endfor%}
 </div>
+
+<nav aria-label="Page navigation example">
+    <ul class="pagination">
+      {% if blogs.has_previous %}
+      <li class="page-item">
+        <a class="page-link btn btn-success" href="?page=1">&laquo; first</a>
+      </li>
+      <li class="page-item">
+        <a class="page-link btn btn-success" href="?page={{ blogs.previous_page_number }}"
+          >previous</a
+        >
+      </li>
+      {% endif %}
+
+      <span class="current">
+        Page {{ blogs.number }} of {{ blogs.paginator.num_pages }}
+      </span>
+
+      {% if blogs.has_next %}
+      <li class="page-item">
+        <a class="page-link btn btn-success" href="?page={{ blogs.next_page_number }}"
+          >next</a
+        >
+      </li>
+      <li class="page-item">
+        <a class="page-link btn btn-success" href="?page={{ blogs.paginator.num_pages }}"
+          >last &raquo;</a
+        >
+      </li>
+      {% endif %}
+    </ul>
+  </nav>
+
 <div class="tab">
   <a href="/blogs/" id="home">
     <svg
@@ -103,5 +136,6 @@
     </svg>
   </a>
 </div>
+
 
 {% endblock %}

@@ -1,6 +1,11 @@
 
 .container{
     margin:5px 5px 5px 5px;
+    /* min-height: 50vh; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
 }
 
 #nav{
@@ -17,7 +22,7 @@
 
 p{
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 20px;
+    font-size: 15px;
 }
 
 .tab{
@@ -60,4 +65,11 @@ p{
 .tab{
     display: flex;
     justify-content: space-around;
+}
+
+
+nav{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

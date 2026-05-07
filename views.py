@@ -5,6 +5,8 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate,login,logout
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.core.paginator import Paginator
+from django.db.models import Q
 
 # Create your views here.
 @login_required(login_url='/log/')
@@ -29,8 +31,14 @@ def blog_page(request):
     queryset=Blog.objects.all()
     search=request.GET.get('search')
     if search:
-        queryset=queryset.filter(post_title__icontains=search)
-    context={'blogs':queryset}
+        queryset=queryset.filter(
+            Q(post_title__icontains=search)|
+            Q(description__icontains=search)
+            )
+    paginator = Paginator(queryset, 1)  # Show 10 contacts per page.
+    page_number = request.GET.get("page",1)
+    page_obj = paginator.get_page(page_number)
+    context={'blogs':page_obj}
     return render(request,'temp/blog.html',context)
 
 @login_required(login_url='/log/')
