@@ -6,3 +6,11 @@ class Blog(models.Model):
     post_title=models.CharField(max_length=100)
     description=models.TextField()
     image=models.ImageField(upload_to='posts/')
+    likes = models.ManyToManyField(
+        User,
+        related_name='blog_like',
+        blank=True
+    )
+    
+    
+

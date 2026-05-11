@@ -27,9 +27,12 @@
     </div>
   </nav>
 </div>
-<div class="container">
+<div class="container mt-4">
+  <div class="row g-4">
   {%for blog in blogs%}
-  <div class="col" id="img">
+  <div class="col-md-6 col-lg-4">
+    <div class="card">
+  <div class="blog-card">
     <div class="card shadow-sm p-3">
       <p id="p1">{{blog.post_title}}</p>
       <img src="/media/{{blog.image}}" />
@@ -52,46 +55,59 @@
               >
             </form>
           </div>
-          <small class="text-body-secondary"></small>
+        <div class="like-section">
+
+  <a href="/like/{{blog.id}}/" class="like-btn">
+
+    {% if request.user in blog.likes.all %}
+      <i class="bi bi-heart-fill"></i>
+    {% else %}
+      <i class="bi bi-heart"></i>
+    {% endif %}
+
+    {{blog.likes.count}}
+
+  </a>
+  </div>
+  </div>
+</div>
+</div>
         </div>
       </div>
     </div>
   </div>
-  <hr />
   {%endfor%}
 </div>
 
 <nav aria-label="Page navigation example">
-    <ul class="pagination">
-      {% if blogs.has_previous %}
-      <li class="page-item">
-        <a class="page-link btn btn-success" href="?page=1">&laquo; first</a>
-      </li>
-      <li class="page-item">
-        <a class="page-link btn btn-success" href="?page={{ blogs.previous_page_number }}"
-          >previous</a
-        >
-      </li>
-      {% endif %}
+  <ul class="pagination">
+    {% if blogs.has_previous %}
+    <li class="page-item">
+      <a class="page-link" href="?page=1">&laquo; first</a>
+    </li>
+    <li class="page-item">
+      <a class="page-link" href="?page={{ blogs.previous_page_number }}"
+        >previous</a
+      >
+    </li>
+    {% endif %}
 
-      <span class="current">
-        Page {{ blogs.number }} of {{ blogs.paginator.num_pages }}
-      </span>
+    <span class="current">
+      Page {{ blogs.number }} of {{ blogs.paginator.num_pages }}
+    </span>
 
-      {% if blogs.has_next %}
-      <li class="page-item">
-        <a class="page-link btn btn-success" href="?page={{ blogs.next_page_number }}"
-          >next</a
-        >
-      </li>
-      <li class="page-item">
-        <a class="page-link btn btn-success" href="?page={{ blogs.paginator.num_pages }}"
-          >last &raquo;</a
-        >
-      </li>
-      {% endif %}
-    </ul>
-  </nav>
+    {% if blogs.has_next %}
+    <li class="page-item">
+      <a class="page-link" href="?page={{ blogs.next_page_number }}">next</a>
+    </li>
+    <li class="page-item">
+      <a class="page-link" href="?page={{ blogs.paginator.num_pages }}"
+        >last &raquo;</a
+      >
+    </li>
+    {% endif %}
+  </ul>
+</nav>
 
 <div class="tab">
   <a href="/blogs/" id="home">
@@ -136,6 +152,5 @@
     </svg>
   </a>
 </div>
-
 
 {% endblock %}

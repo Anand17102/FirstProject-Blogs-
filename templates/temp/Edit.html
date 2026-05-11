@@ -1,11 +1,12 @@
 {% extends 'temp/main.html' %} {% block content %}
-<div class="container">
+<div class="form-container">
   <form
     class="mx-auto p-3 card col-6 shadow-lg m-5"
     method="post"
     enctype="multipart/form-data"
   >
     {%csrf_token%}
+    <div class="form-box">
     <h2>Update Your Blog</h2>
     <br />
     <div class="p-0 mb-3 form-check">
@@ -36,9 +37,10 @@
       >
     </div>
 
-    <button type="post" class="btn btn-primary">Edit</button>
+<button type="update" class="btn btn-sm btn-outline-secondary">Update</button>
   </form>
-  <a id="s" href="/blogs">GoToBlogs-></a>
+
+  </div>
 </div>
 
 {% endblock %}

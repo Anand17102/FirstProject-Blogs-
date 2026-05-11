@@ -1,4 +1,4 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect,get_object_or_404
 from django.http import HttpResponse
 from .models import *
 from django.contrib.auth.models import User
@@ -110,4 +110,16 @@ def logout_page(request):
     logout(request)
     return redirect('/blogs/')
 
-    
+def like_blog(request, id):
+
+    blog = Blog.objects.get(id=id)
+
+    if request.user in blog.likes.all():
+
+        blog.likes.remove(request.user)
+
+    else:
+
+        blog.likes.add(request.user)
+
+    return redirect('/blogs/')
