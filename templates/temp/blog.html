@@ -29,49 +29,48 @@
 </div>
 <div class="container mt-4">
   <div class="row g-4">
-  {%for blog in blogs%}
-  <div class="col-md-6 col-lg-4">
-    <div class="card">
-  <div class="blog-card">
-    <div class="card shadow-sm p-3">
-      <p id="p1">{{blog.post_title}}</p>
-      <img src="/media/{{blog.image}}" />
-      <div class="card-body">
-        <pre> <p class="card-text">{{blog.description}}</p></pre>
-        <div class="d-flex justify-content-between align-items-center">
-          <div class="btn-group">
-            <form action="/blogs/" method="get">
-              <a
-                type="button"
-                href="/delete/{{blog.id}}/"
-                class="btn btn-sm btn-outline-secondary"
-                >Delete</a
-              >
-              <a
-                type="button"
-                href="/edit/{{blog.id}}/"
-                class="btn btn-sm btn-outline-secondary"
-                >Edit</a
-              >
-            </form>
+    {%for blog in blogs%}
+    <div class="col-md-6 col-lg-4">
+      <div class="card">
+        <div class="blog-card">
+          <div class="card shadow-sm p-3">
+            <p id="p1">{{blog.post_title}}</p>
+            <img src="/media/{{blog.image}}" />
+            <div class="card-body">
+              <pre> <p class="card-text">{{blog.description}}</p></pre>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                  <form action="/blogs/" method="get">
+                    <a
+                      type="button"
+                      href="/delete/{{blog.id}}/"
+                      class="btn btn-sm btn-outline-secondary"
+                      >Delete</a
+                    >
+                    <a
+                      type="button"
+                      href="/edit/{{blog.id}}/"
+                      class="btn btn-sm btn-outline-secondary"
+                      >Edit</a
+                    >
+                  </form>
+                </div>
+                <div class="like-section">
+                  <a href="/like/{{blog.id}}/" class="like-btn">
+                    {% if request.user in blog.likes.all %}
+                    <i class="bi bi-heart-fill"></i>
+                    {% else %}
+                    <i class="bi bi-heart"></i>
+                    {% endif %}
+                    <span> {{blog.likes.count}} </span>
+                  </a>
+                  <a href="/comment/{{blog.id}}/" class="comment-btn"
+                    ><i class="bi bi-chat"></i
+                  ></a>
+                </div>
+              </div>
+            </div>
           </div>
-        <div class="like-section">
-
-  <a href="/like/{{blog.id}}/" class="like-btn">
-
-    {% if request.user in blog.likes.all %}
-      <i class="bi bi-heart-fill"></i>
-    {% else %}
-      <i class="bi bi-heart"></i>
-    {% endif %}
-
-    {{blog.likes.count}}
-
-  </a>
-  </div>
-  </div>
-</div>
-</div>
         </div>
       </div>
     </div>
@@ -110,46 +109,12 @@
 </nav>
 
 <div class="tab">
-  <a href="/blogs/" id="home">
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="16"
-      height="16"
-      fill="currentColor"
-      class="bi bi-house-door-fill"
-      viewBox="0 0 16 16"
-    >
-      <path
-        d="M6.5 14.5v-3.505c0-.245.25-.495.5-.495h2c.25 0 .5.25.5.5v3.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5"
-      />
-    </svg> </a
+  <a href="/blogs/" id="home"> <i class="bi bi-house-door-fill"></i> </a
   ><a href="/create/" id="add">
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="16"
-      height="16"
-      fill="currentColor"
-      class="bi bi-plus-square-fill"
-      viewBox="0 0 16 16"
-    >
-      <path
-        d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zm6.5 4.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3a.5.5 0 0 1 1 0"
-      />
-    </svg>
+    <i class="bi bi-patch-plus-fill"></i>
   </a>
-  <a href="#" id="search">
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="16"
-      height="16"
-      fill="currentColor"
-      class="bi bi-send-fill"
-      viewBox="0 0 16 16"
-    >
-      <path
-        d="M15.964.686a.5.5 0 0 0-.65-.65L.767 5.855H.766l-.452.18a.5.5 0 0 0-.082.887l.41.26.001.002 4.995 3.178 3.178 4.995.002.002.26.41a.5.5 0 0 0 .886-.083zm-1.833 1.89L6.637 10.07l-.215-.338a.5.5 0 0 0-.154-.154l-.338-.215 7.494-7.494 1.178-.471z"
-      />
-    </svg>
+  <a href="/comment/{{blog.id}}/" id="search">
+    <i class="bi bi-messenger"></i>
   </a>
 </div>
 

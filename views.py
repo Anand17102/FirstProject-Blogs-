@@ -7,7 +7,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 from django.db.models import Q
-
+from .form import CommentFrom
 # Create your views here.
 @login_required(login_url='/log/')
 def create_post(request):
@@ -123,3 +123,23 @@ def like_blog(request, id):
         blog.likes.add(request.user)
 
     return redirect('/blogs/')
+
+def blog_details(request,id):
+    blog=get_object_or_404(Blog,id=id)
+    
+    comments=blog.comment.all()
+    
+    if request.method =='POST':
+        form = CommentFrom(request.POST)
+        if form.is_valid():
+            new_comment=form.save(commit=False)
+            new_comment.blog=blog
+            new_comment.user=request.user
+            new_comment.save()
+            return redirect('blog_details',id=blog.id)
+    
+    else:
+        form=CommentFrom()
+    context={'blog':blog,'comments':comments,'form':form}
+        
+    return render(request,'temp/blog_details.html',context)  

@@ -11,4 +11,5 @@ urlpatterns=[
     path('log/',views.log_page,name='log_page'),
     path('logot/',views.logout_page,name='logout_page'),
     path('like/<int:id>/', views.like_blog,name='like_blog'),
+    path('comment/<int:id>/', views.blog_details,name='blog_details'),
 ]
